@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { GET_COUNTRIES } from "./queries/countries";
 
 interface Language {
   name: string;
@@ -24,33 +25,12 @@ export default function Home() {
   useEffect(() => {
     async function fetchCountries() {
       try {
-        const query = `
-          query GetCountries {
-            countries {
-              code
-              name
-              emoji
-              currency
-              languages {
-                name
-              }
-            }
-          }
-        `;
-
-        // Multiple endpoints
-        // const response = await fetch('/api/countries');
-        // const response = await fetch(`/api/countries/${id}`);
-        // const response = await fetch(`/api/countries/${id}/languages`);
-
-        // Single endpoint, here i specify what data i want
-        // POST method - GraphQL uses POST with query in body, REST uses GET/POST/etc
         const response = await fetch(API_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ query }),
+          body: JSON.stringify({ query: GET_COUNTRIES }),
         });
 
         const result = await response.json();

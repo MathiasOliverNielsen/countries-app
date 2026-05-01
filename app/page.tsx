@@ -38,6 +38,13 @@ export default function Home() {
           }
         `;
 
+        // Multiple endpoints
+        // const response = await fetch('/api/countries');
+        // const response = await fetch(`/api/countries/${id}`);
+        // const response = await fetch(`/api/countries/${id}/languages`);
+
+        // Single endpoint, here i specify what data i want
+        // POST method - GraphQL uses POST with query in body, REST uses GET/POST/etc
         const response = await fetch(API_URL, {
           method: "POST",
           headers: {
